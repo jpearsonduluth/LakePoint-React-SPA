@@ -65,7 +65,7 @@ export default function Contact() {
 
 
                 <br /><br />
-                <Button onClick={handleClick_Send}>Send</Button>
+                <Button variant="contained" color="primary" onClick={handleClick_Send}>Send</Button>
             </form>
         </div>
     );

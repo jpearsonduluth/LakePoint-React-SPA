@@ -23,24 +23,27 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
-    display: "inline-block",
     background: "white",
     borderRadius: "15px",
-    minWidth: "50%"
+    minWidth: "50%",
+    paddingBottom: "15px",
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '230px',
+    },
+    
   },
   logo: {
     margin: "10px",
     border: "2px solid #ddd",
     width: "max-content",
     margin: "0.5% 5% 0 10%",
-    display: "inline-block"
+    position: "absolute"
   },
 }));
 
 function App(props) {
+  const classes = useStyles();
   
-  const classes = useStyles();  
-
   return (
     <div className="App" className={classes.root}>
       <Header />
