@@ -7,13 +7,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Menu, MenuOpen, Home, MenuBook, Mail, Photo, Directions, Image } from '@material-ui/icons';
+import { Menu, MenuOpen, Home, MenuBook, Mail, Photo, Directions } from '@material-ui/icons';
 import { Divider, AppBar, Toolbar, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     headerBar: {
-        backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
         color: "black"
     },
     list: {
@@ -91,7 +89,7 @@ export default function Header(props) {
 
     return (
         <div>
-            <AppBar position="static" className={classes.headerBar}>
+            <AppBar position="static" className={clsx(classes.headerBar, props.className)}>
                 <Toolbar>
                     <React.Fragment>
                         <Button onClick={toggleDrawer}><Menu /></Button>

@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Header from './Components/header';
@@ -23,22 +22,28 @@ const useStyles = makeStyles((theme) => ({
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
-    background: "white",
     borderRadius: "15px",
     minWidth: "50%",
     paddingBottom: "15px",
     [theme.breakpoints.down('sm')]: {
       marginTop: '230px',
+      //maxWidth: "90%",
     },
-    
+    [theme.breakpoints.down('md')]: {
+      marginTop: '250px',
+      maxWidth: "90%",
+    },
   },
   logo: {
-    margin: "10px",
     border: "2px solid #ddd",
     width: "max-content",
-    margin: "0.5% 5% 0 10%",
+    margin: "1% 5% 0 10%",
     position: "absolute"
   },
+  mutedwhitebg: {
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[800]
+  }
 }));
 
 function App(props) {
@@ -46,10 +51,10 @@ function App(props) {
   
   return (
     <div className="App" className={classes.root}>
-      <Header />
+      <Header className={classes.mutedwhitebg} />
       <div>
         <img src={logo} className={classes.logo} />
-        <Container component="main" className={classes.main} maxWidth="sm">
+        <Container component="main" className={clsx(classes.mutedwhitebg, classes.main)} maxWidth="sm">
 
           <BrowserRouter>
             <Switch>
@@ -62,7 +67,7 @@ function App(props) {
           </BrowserRouter>
         </Container>
       </div>
-      <Footer />
+      <Footer className={classes.mutedwhitebg} />
     </div>
   );
 }

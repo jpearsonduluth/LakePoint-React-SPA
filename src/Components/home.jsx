@@ -15,8 +15,8 @@ export default function Home() {
                         meets each Wednesday night at 7 pm. Please come join us!</p>
 
             <p>
-                Lake point is located at <a target="_blank" title="Directions" href="https://www.google.com/maps/dir/?api=1&destination=Lake+Pointe+Church+Superior+WI+54880">1226 Ogden Ave</a>.
-                        <br />You can also check us out on <a target="_blank" title="facebook" href="https://www.facebook.com/pg/lakepointchurch">facebook</a>;
+                Lake point is located at <a rel="noopener noreferrer" target="_blank" title="Directions" href="https://www.google.com/maps/dir/?api=1&destination=Lake+Pointe+Church+Superior+WI+54880">1226 Ogden Ave</a>.
+                        <br />You can also check us out on <a rel="noopener noreferrer" target="_blank" title="facebook" href="https://www.facebook.com/pg/lakepointchurch">facebook</a>;
                         <br />or give us a call at <a href="tel:715-817-3900">715-817-3900</a>
             </p>
         </Typography>
