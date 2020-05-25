@@ -9,7 +9,7 @@ import Contact from './Components/contact';
 import Directions from './Components/directions';
 import About from './Components/about';
 import Home from './Components/home';
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, HashRouter } from 'react-router-dom'
 import logo from './Assets/logo.jpg';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,30 +46,29 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function App(props) {
+export default function App(props) {
   const classes = useStyles();
   
   return (
-    <div className="App" className={classes.root}>
+    <div className={clsx(classes.root, "App")}>
       <Header className={classes.mutedwhitebg} />
       <div>
-        <img src={logo} className={classes.logo} />
+        <img src={logo} className={classes.logo} alt="Lake Point Logo" />
         <Container component="main" className={clsx(classes.mutedwhitebg, classes.main)} maxWidth="sm">
 
-          <BrowserRouter>
+          <HashRouter>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/gallery" component={Gallery} />
               <Route path="/directions" component={Directions} />
             </Switch>
-          </BrowserRouter>
+          </HashRouter>
         </Container>
       </div>
       <Footer className={classes.mutedwhitebg} />
     </div>
   );
-}
-
-export default App;
+};

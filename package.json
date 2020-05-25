@@ -1,5 +1,6 @@
 {
   "name": "lakepoint-react-spa",
+  "homepage": "http://lakepointchurch.epizy.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

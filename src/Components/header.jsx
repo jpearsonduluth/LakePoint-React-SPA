@@ -27,41 +27,37 @@ export default function Header(props) {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    const navigate = (path) => {
-        window.location.pathname = path;
-        return false;
-    }
     const appPages = [
         {
             Icon: <Home />,
             Text: "Home",
-            Path: "/"
+            Path: "#/"
         },
         {
             Icon: <MenuBook />,
             Text: "About",
-            Path: "/About"
+            Path: "#/About"
         },
         {
             Icon: <Mail />,
             Text: "Contact",
-            Path: "/Contact"
+            Path: "#/Contact"
         },
         {
             Icon: <Photo />,
             Text: "Gallery",
-            Path: "/Gallery"
+            Path: "#/Gallery"
         },
         {
             Icon: <Directions />,
             Text: "Directions",
-            Path: "/Directions"
+            Path: "#/Directions"
         },
     ];
-    const CurrentPageTitle = () => {
-        let path = window.location.pathname;
-        let page = appPages.filter(x => x.Path == path)[0]
-        return page && page.Text ? page.Text : "";
+    const CurrentPage = () => {
+        let path = window.location.hash;
+        let page = appPages.filter(x => x.Path === path)[0]
+        return page ? page : appPages[0];
     }
     const list = () => (
         <div
@@ -78,7 +74,7 @@ export default function Header(props) {
             <Divider />
             {appPages.map((p) => (
                 <List key={p.Text}>
-                    <ListItem button onClick={() => { navigate(p.Path); }}>
+                    <ListItem button component="a" href={p.Path}>
                         <ListItemIcon>{p.Icon}</ListItemIcon>
                         <ListItemText primary={p.Text} />
                     </ListItem>
@@ -97,9 +93,7 @@ export default function Header(props) {
                             {list()}
                         </Drawer>
                     </React.Fragment>
-
-                    <Typography variant="h6">{CurrentPageTitle()}</Typography>
-
+                    {CurrentPage().Icon}<Typography variant="h6">{CurrentPage().Text}</Typography>
                 </Toolbar>
             </AppBar>
         </div>
