@@ -47,6 +47,7 @@ export default function Directions(props) {
     window.dirrectionsSetter = setDirections;
     window.setHasError = setHasError;
     window.setIsLoading = setIsLoading;
+    window.setmanualMode = setmanualMode;
 
     //Rendering
     const renderDirections = () => {
@@ -73,7 +74,7 @@ export default function Directions(props) {
     };
 
     const renderStartingInput = () => {
-        if (!navigator.geolocation || manualMode) {
+        if (manualMode || !navigator.geolocation) {
             return (
                 <React.Fragment>
                     <TextField 
@@ -117,6 +118,7 @@ export default function Directions(props) {
             {!isLoading ? renderDirections() : ""}
             {!isLoading ? renderError() : ""}
 
+            <br /><br />
             <div id="map" style={{ height: '100vh', width: '100%' }}></div>
             {renderMapScript()}
         </React.Fragment >

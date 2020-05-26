@@ -24,7 +24,25 @@ window.initMap = function () {
         directionsRenderer = new goog.maps.DirectionsRenderer();
 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => { window.getDirections({ lat: position.coords.latitude, lng: position.coords.longitude }, window.dirrectionsSetter); });
+            navigator.geolocation.getCurrentPosition(
+                //success cb
+                (position) => {
+                    console.log("local SUCCESS");
+                    window.getDirections({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    }, window.dirrectionsSetter);
+                },
+                //error cb
+                () => {
+                    window.setmanualMode(true);
+                    window.setIsLoading(false);
+                }
+            );
+        }
+        else {
+            window.setmanualMode(true);
+            window.setIsLoading(false);
         }
     }
 }
