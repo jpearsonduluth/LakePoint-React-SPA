@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button } from '@material-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Contact() {
     const [name, setName] = useState("");
@@ -8,6 +8,14 @@ export default function Contact() {
     const [phone, setPhone] = useState("");
     const [reason, setReason] = useState("");
     const [replyPref, setReplyPref] = useState("email");
+    const [okCaptcha, setOkCaptcha] = useState(false);
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://www.google.com/recaptcha/api.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
 
     const handleChange_name = (evt) => {
         setName(evt.target.value);
@@ -30,10 +38,24 @@ export default function Contact() {
 
         console.log(name, email, phone, reason, replyPref);
     }
+
+    window.okcaptcha = (resp) => {
+        console.log("okcaptcha", resp);
+        setOkCaptcha(true);
+    }
+
+    const renderSubmitOrCaptcha = () => {
+        if (okCaptcha)
+            return <Button variant="contained" color="primary" onClick={handleClick_Send}>Send</Button>;
+        else
+            return <div className="g-recaptcha" data-callback="okcaptcha" data-sitekey="6Lc7PvwUAAAAAAgDTjoMCZCBxncpvBE3FOStGscT"></div>;
+    }
+
+
     return (
         <div>
             <Typography variant="h2">Contact</Typography>
-            <br/><br/>
+            <br /><br />
 
             <form noValidate autoComplete="off">
                 <TextField id="Name" label="Name" variant="outlined" value={name} onChange={handleChange_name} />
@@ -63,9 +85,8 @@ export default function Contact() {
                     </RadioGroup>
                 </FormControl>
 
-
                 <br /><br />
-                <Button variant="contained" color="primary" onClick={handleClick_Send}>Send</Button>
+                {renderSubmitOrCaptcha()}
             </form>
         </div>
     );
